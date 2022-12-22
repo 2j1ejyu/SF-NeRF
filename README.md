@@ -5,3 +5,21 @@ conda activate sfnerf
 conda install pytorch==1.12.0 torchvision==0.13.0 torchaudio==0.12.0 cudatoolkit=11.3 -c pytorch
 pip install -r requirements.txt
 ```
+## Data Preparation
+Before training, you must run the code below
+```bash
+python prepare_phototourism.py --root_dir [root directory] --img_downscale [downscale factor (original 1)]
+```
+where the root directory should follow the structure:
+```                                                                                    
+├── root directory                                                                                                                                                                                                       
+│   ├── nerf_llff_data                                                                                                  
+│   │   └── fern                                                                                                                             
+│   │   └── flower  # downloaded llff dataset                                                                                  
+│   │   └── horns   # downloaded llff dataset
+|   |   └── ...
+|   ├── nerf_synthetic
+|   |   └── lego
+|   |   └── ship    # downloaded synthetic dataset
+|   |   └── ...
+```
