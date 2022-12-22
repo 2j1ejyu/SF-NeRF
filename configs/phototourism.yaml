@@ -1,0 +1,102 @@
+seed: 4
+num_gpus: 1
+exp_name: 'Nothing'
+debug: False
+N_vocab: 4000
+data_path: '/hub_data/jaewon/phototourism/brandenburg_gate'
+out_dir: './logs'
+fewshot: -1
+train:
+  batch_size: 4   # num images for each batch
+  chunk_size: 1024  # amount of rays for each image
+  num_work: 4
+  randomized: True
+  white_bkgd: False
+  img_downscale: 2
+val:
+  batch_size: 1
+  num_work: 4
+  randomized: False
+  white_bkgd: False
+  check_interval: 0.15
+  chunk_size: 4096  # The amount of input rays in a forward propagation
+  # img_idx: [0,58,60,73]  # validation images (indexing train images)
+  img_idx: [0,1,2,3]  # validation images (indexing train images)
+  img_downscale: 2
+nerf:
+  num_samples: 64  # The number of samples per level.
+  resample_padding: 0.01  # Dirichlet/alpha "padding" on the histogram.
+  stop_resample_grad: True  # If True, don't backprop across levels')
+  use_viewdirs: True  # If True, use view directions as a condition.
+  disparity: False  # If True, sample linearly in disparity, not in depth.
+  ray_shape: 'cone'  # The shape of cast rays ('cone' or 'cylinder').
+  min_deg_point: 0  # Min degree of positional encoding for 3D points.
+  max_deg_point: 15  # Max degree of positional encoding for 3D points.
+  deg_view: 4  # Degree of positional encoding for viewdirs.
+  density_activation: 'softplus'  # Density activation.
+  density_noise: 0.  # Standard deviation of noise added to raw density.
+  density_bias: 0.  # The shift added to raw densities pre-activation.
+  rgb_activation: 'sigmoid'  # The RGB activation.
+  rgb_padding: 0.001  # Padding added to the RGB outputs.
+  disable_integration: False  # If True, use PE instead of IPE.
+  append_identity: True  # If True, append original view direction features
+  encode_appearance: True
+  a_dim: 48
+  mlp:
+    net_depth: 8  # The depth of the first part of MLP.
+    net_width: 256  # The width of the first part of MLP.
+    net_depth_color: 1  # The depth of the second part of MLP.
+    net_width_color: 128  # The width of the second part of MLP.
+    net_activation: 'relu'  # The activation function.
+    skip_index: 4  # Add a skip connection to the output of every N layers.
+t_net:
+  use_transient: True
+  use_seg_feat: True
+  preload_feat: False
+  seg_feat_dir: '/hub_data/injae/nerf-w/brandenburg_gate/dino_feature_map_scale2'
+  pretrained_path: ''
+  finetune: False
+  deg_pixel: 15
+  beta_activation: 'softplus'
+  alpha_activation: 'softplus'
+  rgb_activation: 'sigmoid'  # The RGB activation.
+  final_feat_dim: 128
+  pxl_augment: False
+  # delta: 0.015
+  # delta_noise: 0.
+  concrete_tmp: 1.0
+  concrete_u_min: 0.0
+  concrete_u_max: 1.0
+  concrete_t_min: 0.0
+  concrete_gamma: 0  # 5e-6
+  concrete_tmp_anneal_step: 40000
+  beta_min: 0.03
+  PE_dropout_p: 0.
+  t_dim: 128
+  mlp:
+    net_activation: 'relu'  # The activation function.
+    net_depth_A: 3
+    net_width_A: 128
+    net_depth_B: 2
+    net_width_B: 128
+    net_depth_feat: 3
+    net_width_feat: 128
+optimizer:
+  lr_init: 1e-3  # The initial learning rate.
+  transient_lr_init: 1e-3  # transient modules learning rate except feat_mapper and final_encoder
+  f_mlp_lr_init: 1e-3  # feature mlp learning rate
+  fin_mlp_lr_init: 1e-3 # final encoder mlp learning rate
+  # lr_final: 5e-6  # The final learning rate.
+  # lr_delay_steps: 2500  # The number of "warmup" learning steps.
+  # lr_delay_mult: 0.01  # How much sever the "warmup" should be.
+  # lr_decay_steps: 150000  # How many steps should pass between calls to scheduler.step().
+  # lr_decay_mult: 0.1  # Multiplicative factor of learning rate decay (gamma).
+  max_steps: 600000
+loss:
+  alpha_smooth_mult: 0.
+  appearance_reg_mult: 1e-5
+  alpha_reg_mult: 0.2
+  coarse_loss_mult: 0.1
+  sparsity_mult: 0.   #1e-11
+checkpoint:
+  resume_path: None
