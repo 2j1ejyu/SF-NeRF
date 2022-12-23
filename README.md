@@ -23,5 +23,5 @@ where the root directory should follow the structure:
 │   │   │   └── images.bin   
 │   │   │   └── points3D.bin
 │   │   ...
-|   ├── [split].tsv
+|   └── [split].tsv
 ```
