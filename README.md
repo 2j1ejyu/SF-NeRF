@@ -122,4 +122,4 @@ python eval.py \
 --epochs 30
 ```
 ## Acknowledege
-Our code is based on the pytorch implementation of [NeRF-W](https://github.com/kwea123/nerf_pl/tree/nerfw/) and [mip-NeRF](https://github.com/hjxwhy/mipnerf_pl)
+Our code is based on the pytorch lightning implementation of [NeRF-W](https://github.com/kwea123/nerf_pl/tree/nerfw/) and [mip-NeRF](https://github.com/hjxwhy/mipnerf_pl)
