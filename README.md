@@ -1,3 +1,7 @@
+# SF-NeRF
+![pipeline](https://user-images.githubusercontent.com/59645285/209291784-cbb3831b-126d-4b83-bc43-1d8e431f6665.png)
+
+
 ## Installation
 ```bash
 conda create -n sfnerf python=3.9.12
