@@ -12,14 +12,16 @@ python prepare_phototourism.py --root_dir [root directory] --img_downscale [down
 ```
 where the root directory should follow the structure:
 ```                                                                                    
-├── root directory                                                                                                                                                                                                       
-│   ├── nerf_llff_data                                                                                                  
-│   │   └── fern                                                                                                                             
-│   │   └── flower  # downloaded llff dataset                                                                                  
-│   │   └── horns   # downloaded llff dataset
-|   |   └── ...
-|   ├── nerf_synthetic
-|   |   └── lego
-|   |   └── ship    # downloaded synthetic dataset
-|   |   └── ...
+├── root directory
+│   ├── dense                                                                                                  
+│   │   ├── images                                                                                                                             
+│   │   │   └── [image1].jpg                                                                      
+│   │   │   └── [image2].jpg
+│   │   │   └── ...
+│   │   ├── sparse                                                                                                                             
+│   │   │   └── cameras.bin
+│   │   │   └── images.bin   
+│   │   │   └── points3D.bin
+│   │   ...
+|   ├── [split].tsv
 ```
