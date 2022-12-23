@@ -60,7 +60,7 @@ val.img_idx [0,1,2,3] \
 val.check_interval 1.0 \
 exp_name brandengurb_toy
 ```
-
+---
 ### Evaluation
 After training, you can evaluate your model by running:
 ```bash
