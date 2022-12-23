@@ -25,3 +25,41 @@ where the root directory should follow the structure:
 │   │   ...
 |   └── [split].tsv
 ```
+
+## Training
+```bash
+python train.py \
+--dataset_name phototourism \
+--config ./configs/phototourism.yaml \
+train.img_downscale 2 \
+val.img_downscale 2 \
+loss.alpha_reg_mult 0.2 \
+loss.sparsity_mult 1e-10 \
+loss.alpha_smooth_mult 5e-7 \
+data_path [phototourism dir]/brandenburg_gate \
+t_net.seg_feat_dir [feature_root] \
+t_net.beta_min 0.03 \
+t_net.concrete_tmp 1.0 \
+train.batch_size 4 \
+train.chunk_size 1024 \
+optimizer.max_steps 200000 \
+optimizer.transient_lr_init 1e-4 \
+optimizer.fin_mlp_lr_init 1e-5 \
+optimizer.f_mlp_lr_init 1e-5 \
+optimizer.lr_init 1e-3 \
+val.img_idx [0,1,2,3] \
+val.check_interval 1.0 \
+exp_name brandengurb_toy
+```
+
+
+## Evaluation
+```bash
+python eval.py \
+--ckpt ./logs/ckpt/brandengurb_toy/last.ckpt \
+--save_image \
+--lr 10 \
+--img_downscale 2 \
+--num_samples 256 \
+--epochs 30
+```
