@@ -11,6 +11,7 @@ pip install -r requirements.txt
 ```
 ## Data Preparation
 Download phototourism dataset [here](https://www.cs.ubc.ca/~kmyi/imw2020/data.html)
+
 Download full split files [here](https://nerf-w.github.io/)
 
 Before training, you must run the code below
