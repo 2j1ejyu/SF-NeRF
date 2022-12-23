@@ -51,7 +51,7 @@ t_net.beta_min 0.03 \
 t_net.concrete_tmp 1.0 \
 train.batch_size 4 \
 train.chunk_size 1024 \
-optimizer.max_steps 200000 \
+optimizer.max_steps 600000 \
 optimizer.transient_lr_init 1e-4 \
 optimizer.fin_mlp_lr_init 1e-5 \
 optimizer.f_mlp_lr_init 1e-5 \
@@ -59,6 +59,50 @@ optimizer.lr_init 1e-3 \
 val.img_idx [0,1,2,3] \
 val.check_interval 1.0 \
 exp_name brandengurb_toy
+```
+---
+For few-shot training, you should first make a split text file with the names of the images you want to train:
+```                                                                                    
+├── root directory
+│   ├── dense                                                                                                  
+│   │   ├── images                                                                                                                             
+│   │   │   └── [image1].jpg                                                                      
+│   │   │   └── [image2].jpg
+│   │   │   └── ...
+│   │   ├── sparse                                                                                                                             
+│   │   │   └── cameras.bin
+│   │   │   └── images.bin   
+│   │   │   └── points3D.bin
+│   │   ...
+|   └── [split].tsv
+|   └── few_30.txt
+```
+You should add arguments "fewshot" and "t_net.pretrained_path" in the script where "fewshot" indicates the number of images to train and "t_net.pretrained_path" the path of pretrained weight:
+```bash
+python train.py \
+--dataset_name phototourism \
+--config ./configs/phototourism.yaml \
+train.img_downscale 2 \
+val.img_downscale 2 \
+loss.alpha_reg_mult 0.2 \
+loss.sparsity_mult 1e-10 \
+loss.alpha_smooth_mult 5e-7 \
+data_path [phototourism dir]/brandenburg_gate \
+t_net.seg_feat_dir [feature_root] \
+t_net.beta_min 0.03 \
+t_net.concrete_tmp 1.0 \
+train.batch_size 4 \
+train.chunk_size 1024 \
+optimizer.max_steps 200000 \
+optimizer.transient_lr_init 1e-4 \
+optimizer.fin_mlp_lr_init 1e-5 \
+optimizer.f_mlp_lr_init 1e-5 \
+optimizer.lr_init 1e-3 \
+val.img_idx [0,1,2,3] \
+val.check_interval 1.0 \
+t_net.pretrained_path ./logs/ckpt/[pretrain exp_name]/last.ckpt \
+fewshot 30 \
+exp_name fewshot_brandenburg_toy
 ```
 ---
 ### Evaluation
