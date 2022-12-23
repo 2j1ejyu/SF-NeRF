@@ -61,7 +61,7 @@ val.check_interval 1.0 \
 exp_name brandengurb_toy
 ```
 ---
-### Few-shot training
+### Few-shot Training
 For few-shot training, you should first make a split text file with the names of the images you want to train:
 ```                                                                                    
 ├── root directory
