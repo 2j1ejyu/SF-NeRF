@@ -121,3 +121,5 @@ python eval.py \
 --num_samples 256 \
 --epochs 30
 ```
+## Acknowledege
+Our code is based on the pytorch implementation of [NeRF-W](https://github.com/kwea123/nerf_pl/tree/nerfw/) and [mip-NeRF](https://github.com/hjxwhy/mipnerf_pl)
