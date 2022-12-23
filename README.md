@@ -26,7 +26,16 @@ where the root directory should follow the structure:
 |   └── [split].tsv
 ```
 
-## Training
+## How To Run
+### Training
+You can train SF-NeRF by running:
+```bash
+python train.py \
+--dataset_name phototourism \
+--config ./configs/phototourism.yaml
+```
+
+You can change arguments in bash scripts as:
 ```bash
 python train.py \
 --dataset_name phototourism \
@@ -52,8 +61,8 @@ val.check_interval 1.0 \
 exp_name brandengurb_toy
 ```
 
-
-## Evaluation
+### Evaluation
+After training, you can evaluate your model by running:
 ```bash
 python eval.py \
 --ckpt ./logs/ckpt/brandengurb_toy/last.ckpt \
