@@ -10,6 +10,9 @@ conda install pytorch==1.12.0 torchvision==0.13.0 torchaudio==0.12.0 cudatoolkit
 pip install -r requirements.txt
 ```
 ## Data Preparation
+Download phototourism dataset [here](https://www.cs.ubc.ca/~kmyi/imw2020/data.html)
+Download full split files [here](https://nerf-w.github.io/)
+
 Before training, you must run the code below
 ```bash
 python prepare_phototourism.py --root_dir [root directory] --img_downscale [downscale factor (original 1)]
