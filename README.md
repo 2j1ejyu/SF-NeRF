@@ -1,5 +1,5 @@
 # SF-NeRF: Semantic-aware Occlusion Filtering Neural Radiance Fields in the Wild
-This repository is the implementation of SF-NeRF, written by Jaewon Lee for master's thesis, using pytorch-lightning.
+This repository is the implementation of [SF-NeRF](https://arxiv.org/abs/2303.03966), written by Jaewon Lee for master's thesis, using pytorch-lightning.
 ![pipeline](https://user-images.githubusercontent.com/59645285/209291784-cbb3831b-126d-4b83-bc43-1d8e431f6665.png)
 
 
